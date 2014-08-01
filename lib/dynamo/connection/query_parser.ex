@@ -1,5 +1,7 @@
 defmodule Dynamo.Connection.QueryParser do
-  defexception ParseError, message: nil
+  defmodule ParseError do
+    defexception [:message]
+  end
 
   require Record
 

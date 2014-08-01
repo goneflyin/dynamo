@@ -34,7 +34,7 @@ defmodule Dynamo.Utils.MessageVerifier do
 
   defp digest(secret, data) do
     <<mac :: [integer, size(160)]>> = :crypto.hmac(:sha, secret, data)
-    :erlang.integer_to_list(mac, 16) |> iodata_to_binary
+    :erlang.integer_to_list(mac, 16) |> String.iodata_to_binary
   end
 
   @doc """
@@ -42,7 +42,7 @@ defmodule Dynamo.Utils.MessageVerifier do
   to avoid timing attacks.
   """
   def secure_compare(left, right) do
-    if size(left) == size(right) do
+    if String.size(left) == String.size(right) do
       compare_each(left, right, true)
     else
       false

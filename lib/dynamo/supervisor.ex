@@ -8,7 +8,7 @@ defmodule Dynamo.Supervisor do
   be configured on `start_link`.
   """
 
-  use Supervisor.Behaviour
+  use Supervisor
 
   @doc """
   Starts the supervisor. It is automatically started

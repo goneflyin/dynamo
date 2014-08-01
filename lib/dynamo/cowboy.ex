@@ -38,7 +38,7 @@ defmodule Dynamo.Cowboy do
       x when x in ["localhost", nil] ->
         :ok
       x when is_binary(x) ->
-        ip = host |> String.split(".") |> Enum.map(&binary_to_integer(&1)) |> list_to_tuple
+        ip = host |> String.split(".") |> Enum.map(&String.binary_to_integer(&1)) |> String.list_to_tuple
         options = Keyword.put(options, :ip, ip)
     end
 
