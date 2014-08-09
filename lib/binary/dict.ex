@@ -158,10 +158,19 @@ defimpl Enumerable, for: Binary.Dict do
 end
 
 defimpl Access, for: Binary.Dict do
-  def access({ Binary.Dict, data }, key) do
+  def get({ Binary.Dict, data }, key) do
     case :lists.keyfind(to_string(key), 1, data) do
       { _, value } -> value
       false -> nil
+    end
+  end
+
+  def get_and_update({ Binary.Dict, data }, key, fun) do
+    key = to_string(key)
+
+    case :lists.keyfind(key, 1, data) do
+      { _, value } -> { value, [{key, fun.apply(value)} | for { k, _ } = tuple <- data, key != k, do: tuple] }
+      false -> { nil, [{key, fun.apply(nil)} | data]}
     end
   end
 end
