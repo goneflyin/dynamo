@@ -151,7 +151,7 @@ defmodule Dynamo.Router.Utils do
   end
 
   defp binary_from_buffer(buffer) do
-    String.iodata_to_binary(Enum.reverse(buffer))
+    IO.iodata_to_binary(Enum.reverse(buffer))
   end
 
   def is_function_exported?(module, function, arity) do
