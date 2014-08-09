@@ -6,7 +6,7 @@ defmodule Dynamo.Cowboy.SSLTest do
     use Dynamo.Router
 
     get "/scheme" do
-      conn.send(200, "scheme: " <> atom_to_binary(conn.scheme))
+      conn.send(200, "scheme: " <> Atom.to_string(conn.scheme))
     end
 
     get "/host_url" do
