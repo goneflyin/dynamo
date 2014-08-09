@@ -130,7 +130,7 @@ defmodule Dynamo.Router.Utils do
 
   defp segment_match([?*|argument], buffer, context) do
     underscore = {:_, [], context}
-    identifier = String.list_to_atom(argument)
+    identifier = List.list_to_atom(argument)
     var = { identifier, [], context }
     expr = quote do
       [unquote(binary_from_buffer(buffer)) <> unquote(underscore) | unquote(underscore)] = unquote(var)
